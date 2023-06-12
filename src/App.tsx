@@ -4,8 +4,10 @@ import { BsFillCalendarFill } from "react-icons/bs";
 import Like from "./components/Like";
 import ExpenseList from "./expense-tracker/components/ExpenseList";
 import { useState } from "react";
-import ExpenseFilter from "./expense-tracker/ExpenseFilter";
+import ExpenseFilter from "./expense-tracker/components/ExpenseFilter";
+import ExpenseForm from "./expense-tracker/components/ExpenseForm";
 
+export const categories = ["Groceries", "Utilities", "Entertainment"];
 function App() {
   const [expenses, setExpenses] = useState([
     { id: 1, description: "aaa", amount: 10, category: "Utilities" },
@@ -25,6 +27,9 @@ function App() {
       <ListGroup heading="Miami" items={items} onSelectItem={() => {}} />
       <BsFillCalendarFill />
       <div>
+        <div className="bm-5">
+          <ExpenseForm />
+        </div>
         <div className="mb-3">
           <ExpenseFilter
             onSelectCategory={(category) => setSelectedCategory(category)}
