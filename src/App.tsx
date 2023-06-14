@@ -2,12 +2,12 @@ import { AiFillHeart } from "react-icons/ai";
 import ListGroup from "./components/ListGroup";
 import { BsFillCalendarFill } from "react-icons/bs";
 import Like from "./components/Like";
-import ExpenseList from "./expense-tracker/components/ExpenseList";
+
 import { useState } from "react";
 import ExpenseFilter from "./expense-tracker/components/ExpenseFilter";
 import ExpenseForm from "./expense-tracker/components/ExpenseForm";
-
-export const categories = ["Groceries", "Utilities", "Entertainment"];
+import ExpenseList from "./expense-tracker/components/ExpenseList";
+import categories from "./expense-tracker/components/categories";
 function App() {
   const [expenses, setExpenses] = useState([
     { id: 1, description: "aaa", amount: 10, category: "Utilities" },
@@ -28,7 +28,14 @@ function App() {
       <BsFillCalendarFill />
       <div>
         <div className="bm-5">
-          <ExpenseForm />
+          <ExpenseForm
+            onSubmit={(expense) =>
+              setExpenses([
+                ...expenses,
+                { ...expense, id: expenses.length + 1 },
+              ])
+            }
+          />
         </div>
         <div className="mb-3">
           <ExpenseFilter
